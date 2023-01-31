@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Xebia essentials",
+  "description": "Good software does not come about just like that; by mere coincidence...",
+  "version": "0.1",
+  "icons": {
+    "32": "images/xebia-essentials-32x32.png",
+    "48": "images/xebia-essentials-48x48.png",
+    "128": "images/xebia-essentials-128x128.png"
+  },
+  "action": {
+    "default_icon": "images/xebia-essentials-128x128.png"
+  },
+  "background": {
+    "service_worker": "./scripts/show-card.js",
+    "type": "module"
+  },
+  "permissions": [
+    "storage",
+    "tabs"
+  ]
+}
