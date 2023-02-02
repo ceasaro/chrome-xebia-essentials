@@ -88,6 +88,7 @@ chrome.action.onClicked.addListener(async (tab) => {
 });
 
 function show_new_card() {
+  post_to_slack();
   chrome.storage.sync.get(["xebiaStateStorageKey"]).then((result) => {
     let xebiaState = result.xebiaStateStorageKey;
     let unseenCards = xebiaState.unseenCards;
@@ -104,6 +105,37 @@ function show_new_card() {
     chrome.storage.sync.set({ xebiaStateStorageKey: xebiaState }).then(() => {
     });
   });
+}
+
+function post_to_slack() {
+  let slack_token = "EAOUN96tNknpe8nMP6j1n6R7";
+
+  const payload = {
+    channel: "test-channel",
+    attachments: [
+      {
+        title: "My first Slack Message",
+        text: "Random example message text",
+        author_name: "Xebia essential chrome extension",
+        color: "#00FF00",
+      },
+    ],
+  };
+  fetch(`https://crop-r.slack.com/services/hooks/incoming-webhook?token=${slack_token}`,
+    {
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(payload)
+    })
+    .then(function (res) {
+      console.log(res)
+    })
+    .catch(function (res) {
+      console.log(res)
+    });
 }
 
 function reset() {
