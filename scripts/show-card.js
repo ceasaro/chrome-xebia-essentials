@@ -84,7 +84,7 @@ let xebia_essential = {
 
 
 chrome.action.onClicked.addListener(async (tab) => {
-  show_new_card();
+  chrome.storage.sync.get(["xebiaStateStorageKey"]) ? show_new_card() : reset();
 });
 
 function show_new_card() {
