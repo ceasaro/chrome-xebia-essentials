@@ -82,14 +82,17 @@ let xebia_essential = {
   ]
 };
 
+const DEFAULT_XEBIA_STORAGE = {
+  unseenCards: [],
+};
+
 
 chrome.action.onClicked.addListener(async (tab) => {
-  chrome.storage.sync.get(["xebiaStateStorageKey"]) ? show_new_card() : reset();
+  show_new_card();
 });
 
 function show_new_card() {
-  post_to_slack();
-  chrome.storage.sync.get(["xebiaStateStorageKey"]).then((result) => {
+  chrome.storage.sync.get({"xebiaStateStorageKey": DEFAULT_XEBIA_STORAGE}).then((result) => {
     let xebiaState = result.xebiaStateStorageKey;
     let unseenCards = xebiaState.unseenCards;
     if (!unseenCards || unseenCards.length === 0) {
@@ -140,9 +143,7 @@ function post_to_slack() {
 
 function reset() {
   chrome.storage.sync.set({
-    xebiaStateStorageKey: {
-      unseenCards: [],
-    }
+    xebiaStateStorageKey: DEFAULT_XEBIA_STORAGE
   }).then(() => {});
 }
 
