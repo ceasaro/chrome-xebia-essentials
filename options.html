@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head><title>Xebia essential options</title></head>
-<body>
+<head>
+    <title>Xebia essential options</title>
+    <link href="css/xebia.css" type="text/css" media="all" rel="stylesheet"/>
+</head>
 
-<label>
-  <input type="text" id="slack_token">
-</label>
+<body class="xebia-extension">
+
+<div>
+    <label for="slack_token">Slack token</label><input type="text" id="slack_token">
+</div>
+<div>
+    <label for="slack_channel">Slack channel</label><input type="text" id="slack_channel">
+</div>
 
 <div id="status"></div>
-<button id="save">Save</button>
+<button class="xebia-button" id="save">Save</button>
 
+<script src="./scripts/xebia-essentials.js"></script>
 <script src="./scripts/options.js"></script>
 </body>
 </html>

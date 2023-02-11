@@ -12,7 +12,7 @@
     "default_icon": "images/xebia-essentials-128x128.png"
   },
   "background": {
-    "service_worker": "./scripts/show-card.js",
+    "service_worker": "./scripts/xebia-essentials.js",
     "type": "module"
   },
   "options_ui": {
@@ -22,5 +22,6 @@
   "permissions": [
     "storage",
     "tabs"
-  ]
+  ],
+  "minimum_chrome_version": "92"
 }

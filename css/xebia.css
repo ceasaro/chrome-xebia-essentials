@@ -1,6 +1,12 @@
 .xebia-extension {
     background-color: #eae0d6;
 }
+.xebia-extension label{
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    width: 100px;
+}
 .xebia-button {
     background-color: #79005d;
     color: #FFF;
