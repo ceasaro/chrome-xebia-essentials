@@ -209,9 +209,7 @@ function show_new_card() {
     let xebiaState = result.xebiaStorageKey;
     let unseenCards = xebiaState.unseenCards;
     if (!unseenCards || unseenCards.length === 0) {
-      unseenCards = Array.apply(null, Array(xebia_essential.cards.length)).map(function (x, i) {
-        return i;
-      });
+      resetCards();
     }
     let unseenCardIndex = Math.floor(Math.random() * unseenCards.length);
     let card = xebia_essential.cards[unseenCards[unseenCardIndex]];
@@ -235,7 +233,9 @@ function reset() {
 function resetCards() {
   chrome.storage.sync.get({ "xebiaStorageKey": DEFAULT_XEBIA_STORAGE }).then((result) => {
     let xebiaState = result.xebiaStorageKey;
-    xebiaState.unseenCards = [];
+    xebiaState.unseenCards = Array.apply(null, Array(xebia_essential.cards.length)).map(function (x, i) {
+        return i;
+      });
     chrome.storage.sync.set({ xebiaStorageKey: xebiaState }).then(() => {
     });
   });
